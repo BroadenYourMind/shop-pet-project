@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
@@ -25,19 +25,17 @@ const SingInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup(); // диструктаризация с обьекта response
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
 
       resetFormFields();
     } catch (error) {
@@ -49,7 +47,7 @@ const SingInForm = () => {
           alert("No user associated with this email");
           break;
         default:
-          console.log(error);
+          alert(error);
       }
     }
   };
